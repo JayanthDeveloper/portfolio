@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>SwiftMove Security Awareness Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+            color: white;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 17px;
+            opacity: 0.95;
+        }
+
+        .company-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .tab:active {
+            background: #ebebeb;
+        }
+
+        .tab.active {
+            color: #e63946;
+            border-bottom-color: #e63946;
+            background: white;
+        }
+
+        .content {
+            padding: 35px;
+        }
+
+        .simulation {
+            display: none;
+        }
+
+        .simulation.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logistics-context {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .logistics-context h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .logistics-context p {
+            color: #1b5e20;
+            line-height: 1.6;
+        }
+
+        .email-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .email-option {
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .email-option:active {
+            transform: scale(0.98);
+        }
+
+        .email-option.selected {
+            border-color: #e63946;
+            background: #ffe5e5;
+            box-shadow: 0 4px 16px rgba(230, 57, 70, 0.3);
+        }
+
+        .scenario-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ff5252;
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .email-option h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .email-option p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .email-container {
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .email-header {
+            background: #f9f9f9;
+            padding: 18px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .email-from {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .email-subject {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .email-date {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .email-body {
+            padding: 25px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .email-body strong {
+            color: #d32f2f;
+        }
+
+        .email-link {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 14px 35px;
+            background: #4CAF50;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-appearance: none;
+        }
+
+        .email-link:active {
+            background: #45a049;
+            transform: scale(0.98);
+        }
+
+        .email-signature {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .analysis-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .analysis-btn:active {
+            background: #c1121f;
+            transform: scale(0.98);
+        }
+
+        .alert {
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideDown 0.5s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-danger {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            color: #c62828;
+        }
+
+        .alert h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .alert ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        .alert li {
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .alert-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #ffcdd2;
+        }
+
+        .intro-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .intro-box h3 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .intro-box p {
+            color: #0d47a1;
+            line-height: 1.6;
+        }
+
+        .password-input-group {
+            margin-bottom: 25px;
+        }
+
+        .password-input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .password-input-group input:focus {
+            outline: none;
+            border-color: #e63946;
+            box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            font-size: 22px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            padding: 10px;
+        }
+
+        .strength-meter {
+            margin-top: 12px;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.5s;
+            border-radius: 10px;
+        }
+
+        .strength-text {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .strength-weak { background: #f44336; }
+        .strength-fair { background: #ff9800; }
+        .strength-good { background: #2196F3; }
+        .strength-strong { background: #4CAF50; }
+
+        .requirements {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .requirements h4 {
+            margin-bottom: 18px;
+            color: #333;
+            font-size: 17px;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            color: #666;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+
+        .requirement.met {
+            color: #4CAF50;
+        }
+
+        .requirement-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .requirement.met .requirement-icon {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+
+        .score-display {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .score-display h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .score-display p {
+            font-size: 15px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .tips {
+            margin-top: 25px;
+            padding: 25px;
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            border-radius: 10px;
+        }
+
+        .tips h4 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .tips ul {
+            margin-left: 25px;
+            color: #856404;
+        }
+
+        .tips li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+            .header p {
+                font-size: 15px;
+            }
+            .content {
+                padding: 20px;
+            }
+            .tab {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+            .email-body {
+                padding: 15px;
+                font-size: 14px;
+            }
+            .email-link {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+            .email-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 SwiftMove Security Awareness Training</h1>
+            <p>Protecting Our Supply Chain: Phishing Detection & Password Security</p>
+            <div class="company-badge">Administration Team Training Module</div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" id="tab-phishing">
+                🎣 Phishing Detection
+            </div>
+            <div class="tab" id="tab-password">
+                🔑 Password Hygiene
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Phishing Simulation -->
+            <div id="phishing" class="simulation active">
+                <div class="logistics-context">
+                    <h3>📦 Why This Matters for Logistics Administration</h3>
+                    <p>Administration staff handle sensitive shipment data, customer information, vendor credentials, and financial transactions daily. A successful phishing attack could compromise client data, disrupt operations, expose trade secrets, or lead to fraudulent transactions.</p>
+                </div>
+
+                <h2 style="margin-bottom: 20px;">📧 Phishing Email Scenarios</h2>
+                <p style="margin-bottom: 20px; color: #666;">Select a realistic scenario targeting logistics administration staff:</p>
+                
+                <div class="email-selector">
+                    <div class="email-option selected" id="email-opt-1">
+                        <div class="scenario-badge">High Priority</div>
+                        <h4>🚨 IT System Maintenance</h4>
+                        <p>Urgent account verification required for system upgrade</p>
+                    </div>
+                    <div class="email-option" id="email-opt-2">
+                        <div class="scenario-badge">Internal Fraud</div>
+                        <h4>💰 Payroll System Update</h4>
+                        <p>Finance department requesting banking information update</p>
+                    </div>
+                    <div class="email-option" id="email-opt-3">
+                        <div class="scenario-badge">System Access</div>
+                        <h4>🔐 SwiftMove TMS Alert</h4>
+                        <p>Suspicious login detected - credential verification required</p>
+                    </div>
+                </div>
+
+                <div id="email-display"></div>
+
+                <button class="analysis-btn" id="analyze-btn">
+                    🔍 Analyze This Email for Phishing Indicators
+                </button>
+
+                <div id="phishing-result" class="alert"></div>
+            </div>
+
+            <!-- Password Checker -->
+            <div id="password" class="simulation">
+                <div class="intro-box">
+                    <h3>🔐 Why Strong Passwords Matter in Logistics</h3>
+                    <p>Weak passwords in logistics systems can lead to unauthorized access to shipment tracking, customer data, inventory systems, and financial records.</p>
+                </div>
+
+                <h2 style="margin-bottom: 20px;">Password Strength Checker</h2>
+                <p style="margin-bottom: 20px; color: #666;">Test your password against industry security standards:</p>
+
+                <div class="password-input-group">
+                    <label for="password-input">Enter a Password to Test:</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password-input" placeholder="Type your password here...">
+                        <span class="toggle-password" id="toggle-pwd">👁️</span>
+                    </div>
+                    <div class="strength-meter">
+                        <div id="strength-bar" class="strength-bar"></div>
+                    </div>
+                    <div id="strength-text" class="strength-text"></div>
+                </div>
+
+                <div class="requirements">
+                    <h4>Security Requirements Checklist:</h4>
+                    <div class="requirement" id="req-length">
+                        <div class="requirement-icon">✓</div>
+                        <span>Minimum 12 characters</span>
+                    </div>
+                    <div class="requirement" id="req-uppercase">
+                        <div class="requirement-icon">✓</div>
+                        <span>Contains uppercase letters (A-Z)</span>
+                    </div>
+                    <div class="requirement" id="req-lowercase">
+                        <div class="requirement-icon">✓</div>
+                        <span>Contains lowercase letters (a-z)</span>
+                    </div>
+                    <div class="requirement" id="req-number">
+                        <div class="requirement-icon">✓</div>
+                        <span>Contains numbers (0-9)</span>
+                    </div>
+                    <div class="requirement" id="req-special">
+                        <div class="requirement-icon">✓</div>
+                        <span>Contains special characters (!@#$%^&*)</span>
+                    </div>
+                    <div class="requirement" id="req-common">
+                        <div class="requirement-icon">✓</div>
+                        <span>Not a commonly used password</span>
+                    </div>
+                </div>
+
+                <div id="score-display" class="score-display" style="display: none;">
+                    <h3 id="score-title">Password Score: 0/100</h3>
+                    <p id="score-message">Start typing to evaluate password strength</p>
+                </div>
+
+                <div class="tips">
+                    <h4>💡 Best Practices for Logistics Professionals:</h4>
+                    <ul>
+                        <li><strong>Use unique passwords:</strong> Never reuse across TMS, WMS, ERP, email</li>
+                        <li><strong>Enable MFA:</strong> Essential for all logistics systems</li>
+                        <li><strong>Use a password manager:</strong> Store complex passwords securely</li>
+                        <li><strong>Create passphrases:</strong> Example: "Cargo#2026!Ships@Global!"</li>
+                        <li><strong>Update regularly:</strong> Change every 90 days</li>
+                        <li><strong>Avoid logistics terms:</strong> Don't use "freight", "cargo", "shipment"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            var currentEmail = 1;
+            var emails = {
+                1: {
+                    from: "it.support@swiftmove-global.com",
+                    subject: "URGENT: System Maintenance - Action Required for All Users",
+                    body: "Dear SwiftMove Team Member,<br><br><strong>CRITICAL SYSTEM MAINTENANCE NOTICE</strong><br><br>Our IT department is performing urgent security updates to all SwiftMove systems including email, file sharing, and business applications.<br><br><strong>Maintenance Details:</strong><br>• Affected Systems: Email, SharePoint, OneDrive, Teams<br>• Scheduled Date: February 5, 2026<br>• Downtime Window: 12:00 AM - 6:00 AM<br>• Impact: All administrative staff<br><br><strong style='color: #d32f2f;'>Action Required Within 6 Hours</strong> or your account will be temporarily suspended for security purposes.<br><br>To ensure uninterrupted access, verify your account credentials immediately:<br>",
+                    link: "https://swiftmove-verify-portal.com/account/verify",
+                    signature: "Best Regards,<br>IT Support Team<br>SwiftMove Logistics<br>Tel: +1-800-SWIFT-IT<br>Email: it.support@swiftmove-global.com",
+                    indicators: ["<strong>Fraudulent Domain:</strong> 'swiftmove-global.com' is NOT SwiftMove's legitimate domain","<strong>Urgency Manipulation:</strong> '6 hours' deadline creates panic","<strong>Account Suspension Threat:</strong> Uses fear to pressure immediate action","<strong>Suspicious Link:</strong> External domain - legitimate IT never uses external portals","<strong>Generic Greeting:</strong> 'Dear SwiftMove Team Member' instead of your name","<strong>Unusual Request:</strong> Legitimate IT uses internal portals, not email links","<strong>Phone Number Red Flag:</strong> Generic number - real IT has extensions"],
+                    impact: ["Stolen credentials provide access to all SwiftMove business systems","Compromised accounts can send internal phishing emails","Access to confidential customer contracts and shipment data","Potential ransomware deployment across company network","Loss of customer trust and regulatory compliance violations"],
+                    correctAction: ["Do NOT click the link or enter any credentials","Check SwiftMove's official internal communication channels","Contact IT helpdesk directly using verified phone number","Verify sender email domain matches official SwiftMove domain exactly","Forward suspicious email to IT security team","Remember: IT will NEVER ask for password verification via email links"]
+                },
+                2: {
+                    from: "finance@swiftmove-payments.com",
+                    subject: "Internal Account Update Required - Expense System Migration",
+                    body: "Dear Team Member,<br><br>We hope this message finds you well.<br><br>SwiftMove Finance Department is migrating to a new expense reimbursement and payment system. All employees must update their direct deposit information to avoid delays in salary and expense reimbursements.<br><br><strong>Pending Reimbursements:</strong><br>• Travel Expenses - January 2026 ($1,450.00)<br>• Client Entertainment ($385.00)<br>• Office Supplies ($127.00)<br><strong>Total Pending: $1,962.00</strong><br><br>To avoid payment delays and ensure your February 15th salary is processed correctly, please update your banking information using our secure portal:<br>",
+                    link: "https://swiftmove-payroll-update.com/banking-info",
+                    signature: "Kind Regards,<br>Finance Department<br>SwiftMove Logistics<br>Email: finance@swiftmove-payments.com<br>HR Support: 1-800-SM-PAYROLL",
+                    indicators: ["<strong>Fake Domain:</strong> 'swiftmove-payments.com' is NOT SwiftMove's official domain","<strong>Vague Authority:</strong> No specific contact person from HR or Finance","<strong>Unrequested Information:</strong> You didn't request any banking information update","<strong>Financial Threat:</strong> 'Payment delays' creates fear to bypass normal HR verification","<strong>Suspicious Payment Link:</strong> Legitimate payroll updates go through official HR portal","<strong>No Official HR Communication:</strong> Major payroll changes are announced via meetings","<strong>Generic Phone Number:</strong> Made up - real HR has direct extensions","<strong>Requests Sensitive Banking Info:</strong> Legitimate companies never ask via email links"],
+                    impact: ["Personal banking credentials stolen, enabling direct theft from your bank account","Identity theft using your personal and banking information","Compromised payroll system could affect all SwiftMove employees' salary payments","Fraudulent direct deposit changes could redirect your salary to attacker's account","Potential for ransomware installation via malicious portal","If you entered credentials, attackers now have access to other SwiftMove systems you use"],
+                    correctAction: ["NEVER provide banking information through email links - always use official HR portal","Verify payroll system changes through your direct manager or HR representative","Contact HR department directly using internal directory or verified phone numbers","Check SwiftMove intranet or official company announcements for system migration notices","Remember: Major payroll changes are always announced through official channels first","Report suspicious finance/HR emails to security@swiftmove.com and your IT security team","If you clicked the link, change all your SwiftMove passwords immediately and notify IT"]
+                },
+                3: {
+                    from: "admin@swiftmove-tms.com",
+                    subject: "SwiftMove TMS Security Update - Account Verification Required",
+                    body: "Dear SwiftMove User,<br><br><strong>IMPORTANT SECURITY NOTICE</strong><br><br>The SwiftMove Transportation Management System has detected unusual login patterns associated with your account. As part of our enhanced security protocols and compliance with ISO 27001 standards, all users must verify their credentials.<br><br><strong>Account Details:</strong><br>• Username: [Your Email]<br>• Last Login: Feb 04, 2026 - 09:23 AM<br>• Login Location: Unknown IP Address (185.220.101.42)<br>• Security Level: MEDIUM RISK<br><br><strong>If this was not you, your account may be compromised.</strong><br><br>To maintain access to dispatch, tracking, and customer management modules, verify your identity within 24 hours:<br>",
+                    link: "https://swiftmove-security-verify.com/auth/validate",
+                    signature: "SwiftMove TMS Security Team<br>IT Support Services<br>Support Portal: swiftmove-tms.com<br>Help Desk: support@swiftmove-tms.com",
+                    indicators: ["<strong>Fake Domain:</strong> 'swiftmove-tms.com' is NOT SwiftMove's official domain","<strong>Generic Sender:</strong> 'admin@swiftmove-tms.com' is vague - legitimate SwiftMove IT sends emails from known administrators","<strong>Suspicious Subdomain:</strong> Legitimate SwiftMove systems use the main company domain, not separate domains","<strong>Fear Tactic:</strong> 'Account may be compromised' and '24 hours' creates urgency to bypass IT verification","<strong>Suspicious IP Display:</strong> Showing a random IP address to appear technical and legitimate","<strong>External Verification Link:</strong> Real TMS security alerts occur within the application or official SwiftMove portal","<strong>No Ticket Number:</strong> Legitimate IT support emails include case/ticket numbers for tracking","<strong>Generic Greeting:</strong> Real IT security alerts would address you by name and employee ID"],
+                    impact: ["SwiftMove TMS credentials stolen, giving attackers access to all shipment and customer data","Unauthorized dispatch changes could reroute shipments or create fraudulent orders under SwiftMove's name","Access to customer contact lists, contracts, and payment information across entire SwiftMove network","Ability to modify delivery addresses, potentially facilitating cargo theft from SwiftMove clients","Compromised credentials could affect integrated warehouse, billing, and carrier systems","Data breach notification requirements, regulatory penalties, and loss of customer trust","Potential for corporate espionage - competitors could access SwiftMove's routes, pricing, and strategies"],
+                    correctAction: ["Do NOT click any verification links in emails claiming to be from SwiftMove IT or TMS support","Log into SwiftMove TMS directly through your bookmarked URL or company intranet portal","Check for security alerts within the actual SwiftMove TMS application interface","Contact SwiftMove IT helpdesk directly using their official phone extension or Teams channel","Report the email to security@swiftmove.com immediately for investigation","If you clicked the link or entered credentials, change your password immediately and notify IT","Remember: SwiftMove IT will NEVER ask for password verification via email links","Verify the sender's email domain is exactly @swiftmove.com (not variations or subdomains)"]
+                }
+            };
+
+            var commonPasswords = ['password','123456','12345678','qwerty','abc123','monkey','1234567','letmein','trustno1','dragon','baseball','iloveyou','master','sunshine','ashley','bailey','passw0rd','shadow','superman','qazwsx','michael','football','logistics','freight','cargo','shipment','warehouse','dispatch','admin123','transport'];
+
+            function displayEmail() {
+                var email = emails[currentEmail];
+                var display = document.getElementById('email-display');
+                if (display && email) {
+                    display.innerHTML = 
+                        '<div class="email-container">' +
+                            '<div class="email-header">' +
+                                '<div class="email-from">From: ' + email.from + '</div>' +
+                                '<div class="email-subject">Subject: ' + email.subject + '</div>' +
+                                '<div class="email-date">Date: February 4, 2026, 10:47 AM</div>' +
+                            '</div>' +
+                            '<div class="email-body">' +
+                                email.body +
+                                '<a href="javascript:void(0);" class="email-link" id="phish-link">' + email.link + '</a>' +
+                                '<div class="email-signature">' + email.signature + '</div>' +
+                            '</div>' +
+                        '</div>';
+                    
+                    // Add click event to phishing link
+                    setTimeout(function() {
+                        var phishLink = document.getElementById('phish-link');
+                        if (phishLink) {
+                            phishLink.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                showPhishedPage();
+                                return false;
+                            });
+                        }
+                    }, 100);
+                }
+            }
+
+            function showPhishedPage() {
+                var body = document.body;
+                var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                body.style.overflow = 'hidden';
+                body.style.position = 'fixed';
+                body.style.top = '-' + scrollPosition + 'px';
+                body.style.width = '100%';
+
+                var overlay = document.createElement('div');
+                overlay.id = 'phishing-overlay';
+                overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:10000;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;';
+
+                var warningBox = document.createElement('div');
+                warningBox.style.cssText = 'background:white;border-radius:20px;padding:25px;max-width:650px;width:100%;margin:40px auto;box-shadow:0 20px 60px rgba(230,57,70,0.5);animation:scaleIn 0.5s;';
+
+                warningBox.innerHTML = 
+                    '<div style="font-size:60px;margin-bottom:15px;animation:pulse 1s infinite;">⚠️</div>' +
+                    '<h1 style="color:#e63946;font-size:clamp(24px,5vw,36px);margin-bottom:15px;font-weight:700;">YOU\'VE BEEN PHISHED!</h1>' +
+                    '<div style="width:80px;height:4px;background:#e63946;margin:0 auto 20px;"></div>' +
+                    '<div style="background:#ffe5e5;padding:20px;border-radius:12px;margin-bottom:20px;border-left:5px solid #e63946;">' +
+                        '<h2 style="color:#e63946;font-size:clamp(18px,4vw,24px);margin-bottom:10px;">⛔ This Was a Simulated Attack</h2>' +
+                        '<p style="color:#c1121f;font-size:clamp(14px,3vw,17px);line-height:1.6;margin-bottom:0;"><strong>In a real scenario, you would have just compromised:</strong></p>' +
+                    '</div>' +
+                    '<div style="text-align:left;margin:20px 0;">' +
+                        '<div style="display:flex;align-items:center;margin:12px 0;padding:12px;background:#fff3cd;border-radius:8px;">' +
+                            '<span style="font-size:clamp(24px,5vw,30px);margin-right:12px;flex-shrink:0;">🔑</span>' +
+                            '<div><strong style="color:#856404;font-size:clamp(14px,3vw,16px);">Your Login Credentials</strong>' +
+                            '<p style="color:#856404;margin:5px 0 0 0;font-size:clamp(12px,2.5vw,14px);">Username, password, and access to SwiftMove systems</p></div>' +
+                        '</div>' +
+                        '<div style="display:flex;align-items:center;margin:12px 0;padding:12px;background:#fff3cd;border-radius:8px;">' +
+                            '<span style="font-size:clamp(24px,5vw,30px);margin-right:12px;flex-shrink:0;">📊</span>' +
+                            '<div><strong style="color:#856404;font-size:clamp(14px,3vw,16px);">Customer & Shipment Data</strong>' +
+                            '<p style="color:#856404;margin:5px 0 0 0;font-size:clamp(12px,2.5vw,14px);">Confidential client information and tracking details</p></div>' +
+                        '</div>' +
+                        '<div style="display:flex;align-items:center;margin:12px 0;padding:12px;background:#fff3cd;border-radius:8px;">' +
+                            '<span style="font-size:clamp(24px,5vw,30px);margin-right:12px;flex-shrink:0;">💰</span>' +
+                            '<div><strong style="color:#856404;font-size:clamp(14px,3vw,16px);">Financial Information</strong>' +
+                            '<p style="color:#856404;margin:5px 0 0 0;font-size:clamp(12px,2.5vw,14px);">Banking details, payment systems, and company accounts</p></div>' +
+                        '</div>' +
+                        '<div style="display:flex;align-items:center;margin:12px 0;padding:12px;background:#fff3cd;border-radius:8px;">' +
+                            '<span style="font-size:clamp(24px,5vw,30px);margin-right:12px;flex-shrink:0;">🏢</span>' +
+                            '<div><strong style="color:#856404;font-size:clamp(14px,3vw,16px);">Company Reputation</strong>' +
+                            '<p style="color:#856404;margin:5px 0 0 0;font-size:clamp(12px,2.5vw,14px);">Customer trust and SwiftMove\'s market position</p></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div style="background:#e3f2fd;padding:20px;border-radius:12px;margin:20px 0;border-left:5px solid #1976d2;">' +
+                        '<h3 style="color:#1565c0;font-size:clamp(16px,4vw,20px);margin-bottom:12px;">🛡️ What You Should Have Done:</h3>' +
+                        '<ul style="text-align:left;color:#0d47a1;line-height:1.8;margin:0;padding-left:20px;font-size:clamp(12px,2.5vw,14px);">' +
+                            '<li style="margin-bottom:8px;"><strong>Verify the sender\'s domain</strong> - Check it matches SwiftMove\'s official domain exactly</li>' +
+                            '<li style="margin-bottom:8px;"><strong>Never click suspicious links</strong> - Always navigate to systems through bookmarks</li>' +
+                            '<li style="margin-bottom:8px;"><strong>Contact IT directly</strong> - Use verified internal channels to confirm requests</li>' +
+                            '<li style="margin-bottom:8px;"><strong>Report to security team</strong> - Forward suspicious emails immediately</li>' +
+                            '<li style="margin-bottom:8px;"><strong>Think before you click</strong> - Urgency is a red flag, not a reason to rush</li>' +
+                        '</ul>' +
+                    '</div>' +
+                    '<div style="margin-top:25px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">' +
+                        '<button id="popup-back-btn" style="padding:15px 30px;background:linear-gradient(135deg,#4a5568 0%,#2d3748 100%);color:white;border:none;border-radius:10px;font-size:clamp(14px,3vw,16px);font-weight:600;cursor:pointer;box-shadow:0 4px 15px rgba(74,85,104,0.3);flex:1;min-width:140px;-webkit-appearance:none;touch-action:manipulation;">← Back to Simulation</button>' +
+                        '<button id="popup-understand-btn" style="padding:15px 30px;background:linear-gradient(135deg,#e63946 0%,#c1121f 100%);color:white;border:none;border-radius:10px;font-size:clamp(14px,3vw,16px);font-weight:600;cursor:pointer;box-shadow:0 4px 15px rgba(230,57,70,0.3);flex:1;min-width:140px;-webkit-appearance:none;touch-action:manipulation;">✓ I Understand</button>' +
+                    '</div>' +
+                    '<p style="color:#666;font-size:clamp(12px,2.5vw,14px);margin-top:20px;font-style:italic;line-height:1.6;">Remember: This was a training simulation. Real phishing attacks happen every day.<br>Stay vigilant and protect SwiftMove!</p>';
+
+                overlay.appendChild(warningBox);
+                document.body.appendChild(overlay);
+                overlay.setAttribute('data-scroll-position', scrollPosition);
+
+                setTimeout(function() {
+                    var backBtn = document.getElementById('popup-back-btn');
+                    var understandBtn = document.getElementById('popup-understand-btn');
+                    
+                    if (backBtn) {
+                        backBtn.addEventListener('click', closePhishingPopup);
+                        backBtn.addEventListener('touchend', function(e) {
+                            e.preventDefault();
+                            closePhishingPopup();
+                        });
+                    }
+                    
+                    if (understandBtn) {
+                        understandBtn.addEventListener('click', closePhishingPopup);
+                        understandBtn.addEventListener('touchend', function(e) {
+                            e.preventDefault();
+                            closePhishingPopup();
+                        });
+                    }
+                }, 100);
+            }
+
+            function closePhishingPopup() {
+                var overlay = document.getElementById('phishing-overlay');
+                if (overlay) {
+                    var scrollPosition = overlay.getAttribute('data-scroll-position') || '0';
+                    overlay.remove();
+                    var body = document.body;
+                    body.style.overflow = '';
+                    body.style.position = '';
+                    body.style.top = '';
+                    body.style.width = '';
+                    window.scrollTo(0, parseInt(scrollPosition));
+                }
+            }
+
+            function selectEmail(emailNum) {
+                currentEmail = emailNum;
+                var options = document.querySelectorAll('.email-option');
+                for (var i = 0; i < options.length; i++) {
+                    options[i].classList.remove('selected');
+                }
+                document.getElementById('email-opt-' + emailNum).classList.add('selected');
+                displayEmail();
+                document.getElementById('phishing-result').classList.remove('show');
+            }
+
+            function analyzeEmail() {
+                var email = emails[currentEmail];
+                var result = document.getElementById('phishing-result');
+                if (result && email) {
+                    var indicatorsHtml = '';
+                    for (var i = 0; i < email.indicators.length; i++) {
+                        indicatorsHtml += '<li>' + email.indicators[i] + '</li>';
+                    }
+                    var impactHtml = '';
+                    for (var j = 0; j < email.impact.length; j++) {
+                        impactHtml += '<li>' + email.impact[j] + '</li>';
+                    }
+                    var actionHtml = '';
+                    for (var k = 0; k < email.correctAction.length; k++) {
+                        actionHtml += '<li>' + email.correctAction[k] + '</li>';
+                    }
+                    
+                    result.className = 'alert alert-danger show';
+                    result.innerHTML = 
+                        '<h3>⚠️ PHISHING ATTACK DETECTED!</h3>' +
+                        '<p><strong>This email exhibits multiple phishing indicators specifically targeting logistics operations:</strong></p>' +
+                        '<h4 style="margin-top:20px;margin-bottom:10px;">🔍 Red Flags Identified:</h4>' +
+                        '<ul>' + indicatorsHtml + '</ul>' +
+                        '<div class="alert-section">' +
+                            '<h4 style="margin-bottom:10px;">💥 Potential Business Impact:</h4>' +
+                            '<ul>' + impactHtml + '</ul>' +
+                        '</div>' +
+                        '<div class="alert-section">' +
+                            '<h4 style="margin-bottom:10px;">✅ Correct Response Protocol:</h4>' +
+                            '<ul>' + actionHtml + '</ul>' +
+                        '</div>' +
+                        '<div class="alert-section">' +
+                            '<p style="margin-top:15px;"><strong>🛡️ Remember:</strong> When in doubt, verify through official channels. Legitimate urgent matters in logistics always have multiple verification points through your account manager, tracking systems, and internal communications. Never let urgency override security protocols.</p>' +
+                        '</div>';
+                }
+            }
+
+            function switchTab(tab) {
+                var tabs = document.querySelectorAll('.tab');
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+                var sims = document.querySelectorAll('.simulation');
+                for (var j = 0; j < sims.length; j++) {
+                    sims[j].classList.remove('active');
+                }
+                document.getElementById('tab-' + tab).classList.add('active');
+                document.getElementById(tab).classList.add('active');
+                if (tab === 'phishing') {
+                    displayEmail();
+                }
+            }
+
+            function togglePassword() {
+                var input = document.getElementById('password-input');
+                var icon = document.getElementById('toggle-pwd');
+                if (input && icon) {
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.textContent = '🙈';
+                    } else {
+                        input.type = 'password';
+                        icon.textContent = '👁️';
+                    }
+                }
+            }
+
+            function checkPassword() {
+                var password = document.getElementById('password-input').value;
+                var strengthBar = document.getElementById('strength-bar');
+                var strengthText = document.getElementById('strength-text');
+                var scoreDisplay = document.getElementById('score-display');
+
+                if (password.length === 0) {
+                    strengthBar.style.width = '0%';
+                    strengthText.textContent = '';
+                    scoreDisplay.style.display = 'none';
+                    resetRequirements();
+                    return;
+                }
+
+                var score = 0;
+                var feedback = [];
+
+                var hasLength = password.length >= 12;
+                updateRequirement('req-length', hasLength);
+                if (hasLength) score += 20;
+                else feedback.push('Use at least 12 characters');
+
+                var hasUppercase = /[A-Z]/.test(password);
+                updateRequirement('req-uppercase', hasUppercase);
+                if (hasUppercase) score += 15;
+                else feedback.push('Add uppercase letters');
+
+                var hasLowercase = /[a-z]/.test(password);
+                updateRequirement('req-lowercase', hasLowercase);
+                if (hasLowercase) score += 15;
+                else feedback.push('Add lowercase letters');
+
+                var hasNumber = /[0-9]/.test(password);
+                updateRequirement('req-number', hasNumber);
+                if (hasNumber) score += 15;
+                else feedback.push('Add numbers');
+
+                var hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+                updateRequirement('req-special', hasSpecial);
+                if (hasSpecial) score += 15;
+                else feedback.push('Add special characters');
+
+                var notCommon = true;
+                for (var i = 0; i < commonPasswords.length; i++) {
+                    if (password.toLowerCase().indexOf(commonPasswords[i].toLowerCase()) !== -1) {
+                        notCommon = false;
+                        break;
+                    }
+                }
+                updateRequirement('req-common', notCommon);
+                if (notCommon) score += 20;
+                else {
+                    feedback.push('Avoid common passwords and logistics terms');
+                    score = Math.max(0, score - 30);
+                }
+
+                scoreDisplay.style.display = 'block';
+                document.getElementById('score-title').textContent = 'Password Score: ' + score + '/100';
+
+                var strength = '';
+                var strengthClass = '';
+                var message = '';
+
+                if (score < 40) {
+                    strength = 'Weak ❌';
+                    strengthClass = 'strength-weak';
+                    message = 'This password is too weak for logistics systems. ' + feedback.join('. ');
+                } else if (score < 60) {
+                    strength = 'Fair ⚠️';
+                    strengthClass = 'strength-fair';
+                    message = 'This password needs improvement for enterprise security. ' + feedback.join('. ');
+                } else if (score < 80) {
+                    strength = 'Good ✓';
+                    strengthClass = 'strength-good';
+                    message = 'This is a good password. ' + (feedback.length > 0 ? feedback.join('. ') : 'Consider making it even stronger for critical systems.');
+                } else {
+                    strength = 'Strong ✓✓';
+                    strengthClass = 'strength-strong';
+                    message = 'Excellent! This password meets enterprise security standards. Remember to use MFA and never reuse it!';
+                }
+
+                strengthBar.style.width = score + '%';
+                strengthBar.className = 'strength-bar ' + strengthClass;
+                strengthText.textContent = strength;
+                var barColor = window.getComputedStyle(strengthBar).backgroundColor;
+                if (barColor) strengthText.style.color = barColor;
+                document.getElementById('score-message').textContent = message;
+            }
+
+            function updateRequirement(id, met) {
+                var element = document.getElementById(id);
+                if (element) {
+                    if (met) {
+                        element.classList.add('met');
+                    } else {
+                        element.classList.remove('met');
+                    }
+                }
+            }
+
+            function resetRequirements() {
+                var requirements = ['req-length','req-uppercase','req-lowercase','req-number','req-special','req-common'];
+                for (var i = 0; i < requirements.length; i++) {
+                    var element = document.getElementById(requirements[i]);
+                    if (element) element.classList.remove('met');
+                }
+            }
+
+            // Event listeners
+            document.addEventListener('DOMContentLoaded', function() {
+                displayEmail();
+
+                // Tab switching
+                var tabPhishing = document.getElementById('tab-phishing');
+                var tabPassword = document.getElementById('tab-password');
+                if (tabPhishing) {
+                    tabPhishing.addEventListener('click', function() { switchTab('phishing'); });
+                    tabPhishing.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        switchTab('phishing'); 
+                    });
+                }
+                if (tabPassword) {
+                    tabPassword.addEventListener('click', function() { switchTab('password'); });
+                    tabPassword.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        switchTab('password'); 
+                    });
+                }
+
+                // Email selector
+                var emailOpt1 = document.getElementById('email-opt-1');
+                var emailOpt2 = document.getElementById('email-opt-2');
+                var emailOpt3 = document.getElementById('email-opt-3');
+                if (emailOpt1) {
+                    emailOpt1.addEventListener('click', function() { selectEmail(1); });
+                    emailOpt1.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        selectEmail(1); 
+                    });
+                }
+                if (emailOpt2) {
+                    emailOpt2.addEventListener('click', function() { selectEmail(2); });
+                    emailOpt2.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        selectEmail(2); 
+                    });
+                }
+                if (emailOpt3) {
+                    emailOpt3.addEventListener('click', function() { selectEmail(3); });
+                    emailOpt3.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        selectEmail(3); 
+                    });
+                }
+
+                // Analyze button
+                var analyzeBtn = document.getElementById('analyze-btn');
+                if (analyzeBtn) {
+                    analyzeBtn.addEventListener('click', analyzeEmail);
+                    analyzeBtn.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        analyzeEmail(); 
+                    });
+                }
+
+                // Password toggle
+                var togglePwd = document.getElementById('toggle-pwd');
+                if (togglePwd) {
+                    togglePwd.addEventListener('click', togglePassword);
+                    togglePwd.addEventListener('touchend', function(e) { 
+                        e.preventDefault(); 
+                        togglePassword(); 
+                    });
+                }
+
+                // Password input
+                var passwordInput = document.getElementById('password-input');
+                if (passwordInput) {
+                    passwordInput.addEventListener('input', checkPassword);
+                    passwordInput.addEventListener('keyup', checkPassword);
+                }
+            });
+
+            if (document.readyState !== 'loading') {
+                var event = new Event('DOMContentLoaded');
+                document.dispatchEvent(event);
+            }
+        })();
+    </script>
+</body>
+</html>
